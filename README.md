@@ -1,1 +1,1 @@
-# Sneaky-Spanish
+# Sneaky Spanish
