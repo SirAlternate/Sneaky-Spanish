@@ -1,0 +1,28 @@
+{
+	"manifest_version": 2,
+
+	"name": "Sneaky Spanish",
+	"description":"temp",
+	"version": "1.0",
+
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+    "tabs", "<all_urls>", "storage"
+	],
+  "background": {
+    "scripts": ["js/eventPage.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"],
+      "js": ["js/content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

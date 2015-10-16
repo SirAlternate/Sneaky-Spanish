@@ -1,0 +1,16 @@
+#main_popup {
+  padding: 10px 20px;
+  height: 100px;
+  width: 300px;
+  font-famuly: Helvetica, Ubuntu, Arial, sans-serif;
+}
+h1 {
+  margin: 0;
+  font-size: 2em;
+}
+p {
+  font-size: 1em;
+}
+button {
+  margin-top: 45px;
+}
