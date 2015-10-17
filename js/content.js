@@ -4,8 +4,8 @@ getStatus(onLoad);
 function onLoad(localStatus) {
   // List of words to replace - TODO: Should probably be in a data file
   var wordsToReplace = [
-    ["the ", "el "],
-    ["The ", "El "]
+    ["the ", "<em>el</em> "],
+    ["The ", "<em>El</em> "]
   ];
     
   // Only replace words if status is 1
@@ -19,7 +19,17 @@ function onLoad(localStatus) {
 
 // Function for replacing given words (word1 is the word to be replaced)
 function replaceWord(word1, word2) {
-  document.body.innerHTML = document.body.innerHTML.replace(new RegExp(word1, "g"), word2);
+  var paragraphs = document.getElementsByTagName("p");
+  // document.body.innerHTML = document.body.innerHTML.replace(new RegExp(word1, "g"), word2);
+  for (var i = 0; i<paragraphs.length; i++){
+    findAndReplaceDOMText(paragraphs[i], {
+      find: 'the',
+      // replace: function(portion, match) {
+      //   return '[[' + portion.index + ']]';
+      // }
+      replace: 'asdfadsfasdfasdf'
+    });
+  }
 }
 
 function getStatus( callback ) {  
