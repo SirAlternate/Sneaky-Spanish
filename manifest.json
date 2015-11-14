@@ -22,8 +22,10 @@
         "http://*/*",
         "https://*/*"],
       "js": [ "js/content.js",
-              "js/findAndReplaceDOMText.js"
-      ],
+              "js/findAndReplaceDOMText.js",
+              "js/jquery-1.10.2.js",
+              "js/bootstrap.min.js"],
+      "css": ["css/popover.css"],
       "run_at": "document_end"
     }
   ]
