@@ -16,6 +16,9 @@
     "scripts": ["js/eventPage.js"],
     "persistent": false
   },
+  "web_accessible_resources": [
+    "js/dictionary.json"
+  ],
   "content_scripts": [
     {
       "matches": [

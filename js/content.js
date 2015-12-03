@@ -12,7 +12,7 @@ function onLoad(localStatus) {
     ["giraffe", "jirafa"],
     ["Giraffe", "Jirafa"]
   ];
-  var words = ["giraffe", "Giraffe", "species", "tallest", "living"];
+  var words = ["giraffe", "Giraffe", "species", "tallest", "living", "time","issue","year","side","people","kind","way","head","day","house","man","service","thing","friend","woman","father","life","power","child","hour","world","game","school","line","state","end","family","member","student","law","group","car","country","city","problem","community","hand","name","part","president","place","team","case","minute","week","idea","company","kid","system","body","program","information","question","back","work","parent","government","face","number","others","night","level","Mr","office","point","door","home","health","water","person","room","art","mother","war","area","history","money","party","storey","result","fact","change","month","morning","lot","reason","right","research","study","girl","book","guy","eye","food","job","moment","word","air","business","teacher"];
 
   // only replace words if status is 1 (SS enabled)
   if (localStatus == 1) {
@@ -25,9 +25,32 @@ function onLoad(localStatus) {
     // }
     
     //HANDLEING WORDS IN FOR LOOP
-    for (var i = 0; i < words.length; i++) {
-      handle(words[i]);
-    }
+    $.ajax({
+      type: "GET",
+      url: chrome.extension.getURL('js/dictionary.json'),
+      dataType: "json",
+      success: function(responseData, status){
+
+        console.log("got the dictionary!");
+        dic = responseData;
+        var count = Object.keys(dic).length;
+        for (var i = 0; i < words.length; i++) {
+          handle(words[i], dic, function(){
+            count--;
+            console.log("\tcount: " + count);
+          });
+          if(count == 0){
+            addJ("sneakyWord"); // add functionality to new elements
+          }
+        }
+      },
+      error: function(msg) {
+        // there was a problem
+        alert("There was a problem: " + msg.status + " " + msg.statusText);
+      }
+    });
+
+    // translateFromFile("asdf");
 
     // goes through the list of words to replace and replaces them on the page
     // for (var i = 0; i < wordsToReplace.length; i++) {
@@ -40,6 +63,7 @@ function onLoad(localStatus) {
 }
 
 function addJ(className){ 
+    console.log("adding J for: " + className);
     var elements = document.getElementsByClassName(className);
     for(var i=0; i<elements.length; i++){ 
       // add click event
@@ -71,12 +95,71 @@ function populatePopover(element) {
   $(element).attr('data-content', '<b>English:</b> ' + 'Giraffe' + '<br><b>Difficulty level:</b> ' + '3' + '<br><br><b>Times...\u00A0\u00A0\u00A0\u00A0Seen:</b> ' + '4' + '\u00A0\u00A0\u00A0\u00A0<b>Clicked:</b> ' + '1');
 }
 
+//handles a word
+function handle(EWord, dic, cb){
+  // translateFromAPI(EWord, function(SWord){
+  //   replaceWord(EWord,SWord);
+  // });
+  translateFromFile(EWord, dic, function(SWord){
+      replaceWord(EWord,SWord,function(){
+        cb();
+      });
+    });
+}
+//translates a word from API
+function translateFromAPI(EWord, cb){
+  console.log("translating(A): " + EWord); 
+  $.ajax({
+    type: "GET",
+    url: "https://glosbe.com/gapi/translate?from=eng&dest=spa&format=json&phrase="+EWord,
+    dataType: "json",
+    success: function(responseData, status){
+      console.log("\ttranslated: " + responseData.tuc[0].phrase.text + "\tstatus: " + status);
+      cb(responseData.tuc[0].phrase.text);
+    },
+    error: function(msg) {
+      // there was a problem
+      alert("There was a problem: " + msg.status + " " + msg.statusText);
+    }
+  });
+}
+function translateFromFile(Eword, dic, cb){
+  cb(dic[Eword]);
+  // console.log("translating(F): " + Eword);
+  // $.ajax({
+  //   type: "GET",
+  //   url: chrome.extension.getURL('js/dictionary.json'),
+  //   dataType: "json",
+  //   success: function(responseData, status){
+  //     console.log(responseData);
+  //     console.log("\ttranslated: " + responseData[Eword] + "\tstatus: " + status);
+  //     cb(responseData[Eword]);
+  //   },
+  //   error: function(msg) {
+  //     // there was a problem
+  //     alert("There was a problem: " + msg.status + " " + msg.statusText);
+  //   }
+  // });
+
+//   var xhr = new XMLHttpRequest();
+// xhr.open('GET', chrome.extension.getURL('script1.txt'), true);
+// xhr.onreadystatechange = function()
+// {
+//     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+//     {
+//         //... The content has been read in xhr.responseText
+//     }
+// };
+// xhr.send();
+
+}
+
 // Function for replacing given words (word1 is the word to be replaced)
-function replaceWord(word1, word2) {
+function replaceWord(word1, word2, cb) {
   console.log("replacingg: " + word1);            //!//start replacing
 
   var element = document.createElement('em');     //create an element to embed
-  element.className="ss" + word1;
+  element.className="sneakyWord";                 //identify the new element
   if (false) {
     $(element).attr('style', 'background-color:yellow; color:black;');
   }
@@ -98,30 +181,9 @@ function replaceWord(word1, word2) {
     replace: word2,
     wrap: element
   });
-  addJ(word1);
+  cb();
 }
 
-function handle(EWord){
-  translateFromAPI(EWord, function(SWord){
-    replaceWord(EWord,SWord);
-  });
-}
-function translateFromAPI(EWord, cb){
-  console.log("translating: " + EWord); 
-  $.ajax({
-    type: "GET",
-    url: "https://glosbe.com/gapi/translate?from=eng&dest=spa&format=json&phrase="+EWord,
-    dataType: "json",
-    success: function(responseData, status){
-      console.log("\ttranslated: " + responseData.tuc[0].phrase.text + "\tstatus: " + status);
-      cb(responseData.tuc[0].phrase.text);
-    },
-    error: function(msg) {
-      // there was a problem
-      alert("There was a problem: " + msg.status + " " + msg.statusText);
-    }
-  });
-}
 
 // For reference:
 // element actions  http://www.w3schools.com/jsref/dom_obj_all.asp
