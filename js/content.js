@@ -1,3 +1,7 @@
+//content.js
+//MAIN
+//controls translation and replacement of words
+
 getStatus(onLoad); // ensures getStatus finishes before onLoad is called
 
 function getStatus( callback ) {  
@@ -16,32 +20,24 @@ function onLoad(localStatus) {
 
   // only replace words if status is 1 (SS enabled)
   if (localStatus == 1) {
-    
-    //HANDLEING WORDS IN FOR LOOP
-    $.ajax({
-      type: "GET",
-      url: chrome.extension.getURL('js/resources/dictionary.json'),
-      dataType: "json",
-      success: function(responseData, status){
 
-        console.log("got the dictionary!");
-        dic = responseData;
-        var count = Object.keys(dic).length;
-        for (var i = 0; i < words.length; i++) {
-          handle(words[i], dic, function(){
-            count--;
-            console.log("\tcount: " + count);
+    // FROM FILEUTIL.JS
+    getDictionary(function(responseData){
+
+      dic = Object.keys(responseData);
+        var count = dic.length;
+
+        for (var i = count-1; i >= 0; i--) {  //loop thru dictionary and handle
+          handle(dic[i], responseData, function(){
+            // console.log("\tcount: " + i);
+            if(i == 0){
+              // FROM POPBOX.JS
+              addJ("sneakyWord"); // add functionality to new elements once done
+            }
           });
-          if(count == 0){
-            addJ("sneakyWord"); // add functionality to new elements
-          }
         }
-      },
-      error: function(msg) {
-        // there was a problem
-        alert("There was a problem: " + msg.status + " " + msg.statusText);
-      }
-    });
+
+      });
   }
 }
 
@@ -73,13 +69,15 @@ function translateFromAPI(EWord, cb){
     }
   });
 }
+
 function translateFromFile(Eword, dic, cb){
-  cb(dic[Eword]);
+  console.log(dic[Eword].clicks);
+  cb(dic[Eword].def);
 }
 
 // Function for replacing given words (word1 is the word to be replaced)
 function replaceWord(word1, word2, cb) {
-  console.log("replacingg: " + word1);            //!//start replacing
+  // console.log("replacingg: " + word1);            //!//start replacing
 
   var element = document.createElement('em');     //create an element to embed
   element.className="sneakyWord";                 //identify the new element

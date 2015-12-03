@@ -26,6 +26,7 @@
         "https://*/*"],
       "js": [ "js/content.js",
               "js/popbox.js",
+              "js/fileUtil.js",
               "js/resources/findAndReplaceDOMText.js",
               "js/resources/jquery-1.10.2.js",
               "js/resources/bootstrap.min.js"],

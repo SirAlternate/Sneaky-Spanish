@@ -1,4 +1,5 @@
-// popbox.js
+//popbox.js
+//scripts handling the right click popup 
 
 function addJ(className){ 
     console.log("adding J for: " + className);
