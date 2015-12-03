@@ -17,13 +17,6 @@ function onLoad(localStatus) {
   // only replace words if status is 1 (SS enabled)
   if (localStatus == 1) {
     
-    // get the document body
-    // var body = document.body;
-    // if(body == null) { // just incase
-    //   console.error("ERR: document has no body");
-    //   return;
-    // }
-    
     //HANDLEING WORDS IN FOR LOOP
     $.ajax({
       type: "GET",
@@ -49,16 +42,6 @@ function onLoad(localStatus) {
         alert("There was a problem: " + msg.status + " " + msg.statusText);
       }
     });
-
-    // translateFromFile("asdf");
-
-    // goes through the list of words to replace and replaces them on the page
-    // for (var i = 0; i < wordsToReplace.length; i++) {
-    //   replaceWord(wordsToReplace[i][0], wordsToReplace[i][1]);
-    // } 
-    
-    // TODO => add functionality to replaced words (should move this to another doc)
-    // get a list of all changed words in the document
   }
 }
 
@@ -92,33 +75,6 @@ function translateFromAPI(EWord, cb){
 }
 function translateFromFile(Eword, dic, cb){
   cb(dic[Eword]);
-  // console.log("translating(F): " + Eword);
-  // $.ajax({
-  //   type: "GET",
-  //   url: chrome.extension.getURL('js/dictionary.json'),
-  //   dataType: "json",
-  //   success: function(responseData, status){
-  //     console.log(responseData);
-  //     console.log("\ttranslated: " + responseData[Eword] + "\tstatus: " + status);
-  //     cb(responseData[Eword]);
-  //   },
-  //   error: function(msg) {
-  //     // there was a problem
-  //     alert("There was a problem: " + msg.status + " " + msg.statusText);
-  //   }
-  // });
-
-//   var xhr = new XMLHttpRequest();
-// xhr.open('GET', chrome.extension.getURL('script1.txt'), true);
-// xhr.onreadystatechange = function()
-// {
-//     if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
-//     {
-//         //... The content has been read in xhr.responseText
-//     }
-// };
-// xhr.send();
-
 }
 
 // Function for replacing given words (word1 is the word to be replaced)
