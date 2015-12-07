@@ -11,6 +11,22 @@ function getStatus( callback ) {
 }
 
 function onLoad(localStatus) {
+
+  // console.log("writing to chrome:");
+  // chrome.storage.local.set({'test1':1}, function() {
+  //       // Notify that we saved.
+  //       console.log('Settings saved');
+  //     });
+  // var thing = "dope";
+  // rightClick("yo");
+  // rightClick("yo");
+  // rightClick("yo");
+  chrome.storage.local.get('test1', function(data) {
+          // Notify that we saved.
+          console.log(data);
+          console.log(Object.keys(data).length);
+        });
+
   // list of words to replace
   var wordsToReplace = [
     ["giraffe", "jirafa"],
@@ -52,6 +68,7 @@ function handle(EWord, dic, cb){
       });
     });
 }
+
 //translates a word from API
 function translateFromAPI(EWord, cb){
   console.log("translating(A): " + EWord); 
@@ -71,7 +88,6 @@ function translateFromAPI(EWord, cb){
 }
 
 function translateFromFile(Eword, dic, cb){
-  console.log(dic[Eword].clicks);
   cb(dic[Eword].def);
 }
 
@@ -88,6 +104,8 @@ function replaceWord(word1, word2, cb) {
   $(element).attr('data-trigger', 'focus');
   $(element).attr('data-placement', 'auto top');
   $(element).attr('data-html', 'true');
+  $(element).attr('EWord', word1);
+  $(element).attr('SWord', word2);
   
   var qString = "\\b" + word1 + "\\b";              //'//b' is to omit embedded words (like rather and other for the)
   var findMe = new RegExp(qString, "g");            //make regex

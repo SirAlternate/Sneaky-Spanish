@@ -18,15 +18,3 @@ function getDictionary(cb) {
       }
     });
 }
-
-function getDef(EWord, cb){
-
-}
-
-function getClicks(EWord, cb) {
-
-}
-
-function changeClicks(EWord, cb) {
-
-}
