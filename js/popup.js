@@ -20,4 +20,11 @@ function toggleState() {
   
   // If status is 0 then text is "Disable", if 1 then text is "Enable"
   button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
+
+  if(localStorage.status == 1){
+    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SSicon.png" });
+  } else {
+    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "icon.png" });
+  }
+
 }

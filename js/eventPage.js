@@ -6,7 +6,14 @@ chrome.runtime.onMessage.addListener(
       console.log(localStorage['status']);
       sendResponse({status: localStorage['status']});
     }
+    if(request.method == "changeIcon") {
+    	chrome.browserAction.setIcon({
+            path: request.path,
+            // tabId: sender.tab.id
+        });
+    }
   });
+
 
 // Function called every time the current tab is changed
 function tabChanged(activeInfo) {
