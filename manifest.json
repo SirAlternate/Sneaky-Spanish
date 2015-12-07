@@ -9,6 +9,7 @@
 		"default_icon": "SSicon.png",
 		"default_popup": "popup.html"
 	},
+  "icons" : {"16" : "SSicon.png"},
 	"permissions": [
     "tabs", "<all_urls>", "storage"
 	],
