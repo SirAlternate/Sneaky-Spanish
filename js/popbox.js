@@ -146,6 +146,9 @@ function togglePopover(element, callback) {
       dataType: 'xml',
       success: function(data) {
         entry = data.getElementById(removeDiacritics(word));
+        if (entry == null) {
+          entry = data.getElementById(removeDiacritics(word) + '[1]');
+        }
         examples = entry.getElementsByTagName("example");
         ex = examples[examples.length - 2].innerHTML;
         example = ex.charAt(0).toUpperCase() + ex.slice(1);
@@ -154,6 +157,7 @@ function togglePopover(element, callback) {
         
         soundFile = entry.getElementsByTagName('sound')[0].innerHTML;
         audioURL = 'http://media.merriam-webster.com/audio/prons/es/me/mp3/' + soundFile.charAt(0) + '/' + soundFile.split(".")[0] + '.mp3';
+        console.log(audioURL);
           
         if (callbacks.length > i) {
           i++;
