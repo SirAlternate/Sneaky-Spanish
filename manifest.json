@@ -11,26 +11,33 @@
 	},
   "icons" : {"16" : "SSicon.png"},
 	"permissions": [
-    "tabs", "<all_urls>", "storage"
+    "tabs", 
+    "<all_urls>", 
+    "storage", 
+    "https://query.yahooapis.com/v1/public/yql/*"
 	],
   "background": {
     "scripts": ["js/eventPage.js"],
     "persistent": false
   },
   "web_accessible_resources": [
-    "js/resources/dictionary.json"
+    "js/resources/dictionary.json",
+    "js/resources/jquery-1.10.2.js",
+    "js/popbox.js",
+    "listen_icon.png"
   ],
   "content_scripts": [
     {
       "matches": [
         "http://*/*",
         "https://*/*"],
-      "js": [ "js/content.js",
-              "js/popbox.js",
-              "js/fileUtil.js",
-              "js/resources/findAndReplaceDOMText.js",
-              "js/resources/jquery-1.10.2.js",
-              "js/resources/bootstrap.min.js"],
+      "js": [ 
+        "js/resources/jquery-1.10.2.js",
+        "js/resources/bootstrap.min.js",
+        "js/content.js",
+        "js/popbox.js",
+        "js/fileUtil.js",
+        "js/resources/findAndReplaceDOMText.js"],
       "css": ["css/popover.css"],
       "run_at": "document_end"
     }
