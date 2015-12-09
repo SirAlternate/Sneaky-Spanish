@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "Sneaky Spanish",
-	"description":"temp",
+	"description":"Designed for those wanting to learn Spanish but unable to invest the time required to do so.",
 	"version": "1.0",
 
 	"browser_action": {
