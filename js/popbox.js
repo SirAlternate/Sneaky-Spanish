@@ -87,7 +87,7 @@ function togglePopover(element, callback) {
   // GET CLICK COUNT
   chrome.storage.local.get(EWord.toLowerCase(), function(data) {
     if (data[EWord.toLowerCase()] > 0) {
-      clicks = data[EWord.toLowerCase()];
+      clicks = data[EWord.toLowerCase()] + 1;
     } else {
       clicks = 1;
     }
@@ -102,32 +102,42 @@ function togglePopover(element, callback) {
     success: function(data) {      
       // GET ENTRY
       entry = data.getElementById(removeDiacritics(word));
-      if (entry == null) {
+      if(entry == null) {
         entry = data.getElementById(removeDiacritics(word) + '[1]');
       }
-      
+
       // GET WORD TYPE
       wordType = entry.getElementsByTagName('fl')[0].innerHTML;
       
       // GET EXAMPLE
-      examples = entry.getElementsByTagName("example");
-      if (examples.length > 1) {
-        ex = examples[examples.length - 2].innerHTML;
-      } else {
-        ex = examples[0].innerHTML;
+      try {
+        examples = entry.getElementsByTagName('example');
+        if (examples.length > 1) {
+          ex = examples[examples.length - 2].innerHTML;
+        } else {
+          ex = examples[0].innerHTML;
+        }
+        example = ex.charAt(0).toUpperCase() + ex.slice(1); 
+      } catch(e) {
+        example = 'Unable to locate';
       }
-      example = ex.charAt(0).toUpperCase() + ex.slice(1);
 
       // GET SOUND FILE
-      soundFile = entry.getElementsByTagName('sound')[0].innerHTML;
-      audioURL = 'http://media.merriam-webster.com/audio/prons/es/me/mp3/' + soundFile.charAt(0) + '/' + soundFile.split(".")[0] + '.mp3';
+      try {
+        soundFile = entry.getElementsByTagName('sound')[0].innerHTML;
+        audioURL = 'http://media.merriam-webster.com/audio/prons/es/me/mp3/' + soundFile.charAt(0) + '/' + soundFile.split(".")[0] + '.mp3'; 
+      } catch(e) {
+        audioURL = '';
+      }
 
       // SET POPOVER TITLE
       $(element).attr('data-title', SWord + ' (' + wordType + ')');
 
       // SET POPOVER CONTENT
       content = "";
-      content += '<a class="listen" style="background-image:url(&quot;' + chrome.extension.getURL("listen_icon.png") + '&quot;)" onclick="(new Audio(&quot;' + audioURL + '&quot;)).play()"></a>';
+      if (audioURL != '') {
+        content += '<a class="listen" style="background-image:url(&quot;' + chrome.extension.getURL("listen_icon.png") + '&quot;)" onclick="(new Audio(&quot;' + audioURL + '&quot;)).play()"></a>'; 
+      }
       content += '<b>Translation:</b> ' + EWord;
       content += '<br><b>Ex) </b>' + example;
       content += '<br><hr><p style="text-align:center; font-size:12px;">You have clicked this word ' + clicks + ' times.</p>';
