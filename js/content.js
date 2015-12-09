@@ -88,7 +88,7 @@ function replaceWord(word1, word2, cb) {
 
   var qString = "\\b" + word1 + "\\b"; //'//b' is to omit embedded words (like rather and other for the)
   var findMe = new RegExp(qString, "g"); //make regex
-
+  
   var body = document.body;
   findAndReplaceDOMText(body, { //replace
     find: findMe,
@@ -97,10 +97,22 @@ function replaceWord(word1, word2, cb) {
 
     wrap: element
   });
+  
+//  var qString2 = "\\b" + word1.charAt(0).toUpperCase() + word1.slice(1) + "\\b";
+//  var findMe2 = new RegExp(qString2, "g"); //make regex
+//  findAndReplaceDOMText(body, { //replace
+//    find: findMe2,
+//
+//    replace: word2,
+//
+//    wrap: element
+//  });
   cb();
 }
 
-
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 // For reference:
 // element actions  http://www.w3schools.com/jsref/dom_obj_all.asp
 // DOM manipulator  https://github.com/padolsey/findAndReplaceDOMText

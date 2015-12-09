@@ -81,8 +81,8 @@ function rightClick(EWord) {
 
 function togglePopover(element, callback) {
   // GET ENGLISH AND SPANISH WORDS
-  SWord = $(element).attr('SWord').charAt(0).toUpperCase() + $(element).attr('SWord').slice(1);
-  EWord = $(element).attr('EWord').charAt(0).toUpperCase() + $(element).attr('EWord').slice(1);
+  SWord = capitalize($(element).attr('SWord'));
+  EWord = capitalize($(element).attr('EWord'));
   
   // GET CLICK COUNT
   chrome.storage.local.get(EWord.toLowerCase(), function(data) {
@@ -117,7 +117,7 @@ function togglePopover(element, callback) {
         } else {
           ex = examples[0].innerHTML;
         }
-        example = ex.charAt(0).toUpperCase() + ex.slice(1); 
+        example = capitalize(ex); 
       } catch(e) {
         example = 'Unable to locate';
       }

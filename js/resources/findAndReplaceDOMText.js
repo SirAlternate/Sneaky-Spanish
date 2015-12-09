@@ -108,7 +108,16 @@ function hellow(){
 	 *	returning false = avoid element)
 	 */
 	function findAndReplaceDOMText(node, options) {
-		return new Finder(node, options);
+    new Finder(node, options);
+    
+    var word = String(options.find).slice(3, String(options.find).length - 4);
+    new Finder(node, {
+    find: new RegExp("\\b" + capitalize(word) + "\\b", "g"),
+
+    replace: capitalize(options.replace),
+
+    wrap: options.wrap
+  });
 	}
 
 	exposed.NON_PROSE_ELEMENTS = {
@@ -224,7 +233,7 @@ function hellow(){
 							matches.push(self.prepMatch(match, matchIndex++, offset));
 						}
 					} else {
-						if (match = text.match(regex)) {
+						if ((match = text.match(regex))) {
 							matches.push(self.prepMatch(match, 0, offset));
 						}
 					}
@@ -233,7 +242,7 @@ function hellow(){
 				}
 			}
 
-			return matches;
+      return matches;
 
 		},
 
