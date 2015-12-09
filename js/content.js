@@ -13,22 +13,6 @@ function getStatus(callback) {
 
 function onLoad(localStatus) {
 
-  // console.log("writing to chrome:");
-  // chrome.storage.local.set({'test1':1}, function() {
-  //       // Notify that we saved.
-  //       console.log('Settings saved');
-  //     });
-  // var thing = "dope";
-  // rightClick("yo");
-  // rightClick("yo");
-  // rightClick("yo");
-
-  chrome.storage.local.get('test1', function(data) {
-    // Notify that we saved.
-    console.log(data);
-    console.log(Object.keys(data).length);
-  });
-
   // only replace words if status is 1 (SS enabled)
   if (localStatus == 1) {
 
