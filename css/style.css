@@ -12,11 +12,13 @@ img{
 }
 a{
   outline: none;
+  text-decoration: none;
+  color: black;
 }
 h2 {
   font-family: 'Lobster Two', cursive;
   display: inline;
-  margin-left: 10px;
+  padding-left: 10px;
 }
 p {
   font-size: 1em;
@@ -29,6 +31,10 @@ button {
   height: 200%;
   width: 33%;
   display: inline;
+  cursor: pointer;
+}
+button.selected {
+  background-color: #606060 !important;
 }
 .bButtons{
   float: left;
