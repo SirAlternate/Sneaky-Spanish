@@ -24,6 +24,12 @@ function onLoad() {
       }
     }, false);
   }
+  //DIFICULTY
+  $("#slider").mousemove( function(e){
+    outputUpdate($(this).val());
+  });
+
+
   // OPTIONS - HIGHLIGHTING
   if (!localStorage.o_highlight) {
     localStorage['o_highlight'] = 0; // Default value is 1 (enabled)
@@ -47,11 +53,12 @@ function onLoad() {
       });
     }, false);
   }
+
 }
 
 function outputUpdate(level) {
   if (level == 0){
-    document.querySelector('#level').value = "Easy";
+    document.querySelector('#level').value = "Giraffe";
   }
   else if (level == 1){
     document.querySelector('#level').value = "Medium";
