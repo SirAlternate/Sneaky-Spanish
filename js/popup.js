@@ -18,9 +18,9 @@ function onLoad() {
       button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
 
       if(localStorage.status == 1){
-        chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16.png" });
+        chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "icons/SS16.png" });
       } else {
-        chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16D.png" });
+        chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "icons/SS16D.png" });
       }
     }, false);
   }

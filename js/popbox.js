@@ -141,7 +141,7 @@ function togglePopover(element, callback) {
       // SET POPOVER CONTENT
       content = "";
       if (audioURL != '') {
-        content += '<a class="listen" style="background-image:url(&quot;' + chrome.extension.getURL("listen_icon.png") + '&quot;)" onclick="(new Audio(&quot;' + audioURL + '&quot;)).play()"></a>'; 
+        content += '<a class="listen" style="background-image:url(&quot;' + chrome.extension.getURL("icons/listen.png") + '&quot;)" onclick="(new Audio(&quot;' + audioURL + '&quot;)).play()"></a>'; 
       }
       content += '<b>Translation:</b> ' + EWord;
       content += '<br><b>Ex: </b>' + example;
