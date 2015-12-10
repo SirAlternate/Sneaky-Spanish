@@ -1,16 +1,58 @@
+#wrap{
+	text-align: center;
+}
 #main_popup {
-  padding: 10px 20px;
   height: 100px;
-  width: 300px;
+  width: 200px;
   font-famuly: Helvetica, Ubuntu, Arial, sans-serif;
 }
-h1 {
-  margin: 0;
-  font-size: 2em;
+img{
+	position: relative;
+	top: 1px;
+}
+a{
+  outline: none;
+}
+h2 {
+  font-family: 'Lobster Two', cursive;
+  display: inline;
+  margin-left: 10px;
 }
 p {
   font-size: 1em;
 }
 button {
-  margin-top: 45px;
+  border-style: none;
+  background-color: #000000;
+  color: #FFFFFF;
+  outline: none;
+  height: 200%;
+  width: 33%;
+  display: inline;
+}
+.bButtons{
+  float: left;
+  width: 33%;
+}
+.bButtons:hover{
+  background-color: #383838;
+  float: left;
+  width: 33%;
+}
+#stateButton{
+  border-radius: 2px;
+}
+hr{
+  clear: both;
+  border-top: 1px solid;
+}
+form{
+	text-align: left;
+}
+#content{
+	background-color: #EDEDED;
+	margin-top: 15%;
+	margin-bottom: 5%;
+	padding: 5%;
+	border-radius: 2px;
 }
