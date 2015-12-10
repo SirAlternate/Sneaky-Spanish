@@ -446,7 +446,7 @@ Taken from Bootstrap's default style sheet and modified to meet our own needs
   left: 0;
   z-index: 1060;
   display: none;
-  width: 300px;
+  min-width: 300px;
   padding: 1px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -481,7 +481,7 @@ p {
   margin: 0 !important;
 }
 .popover-title {
-  padding: 0 14px !important;
+  padding: 0 50px 0 14px !important;
   margin: 0 !important;
   font-size: 16px;
   background-color: #f7f7f7;
@@ -500,6 +500,8 @@ p {
   background-size: contain;
 }
 .popover-content {
+  width: 300px;
+  margin: 0 auto;
   font-size: 14px;
   padding: 10px 14px;
 }

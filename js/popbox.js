@@ -107,7 +107,12 @@ function togglePopover(element, callback) {
       }
 
       // GET WORD TYPE
-      wordType = entry.getElementsByTagName('fl')[0].innerHTML;
+      try {
+        wordType = entry.getElementsByTagName('fl')[0].innerHTML;
+      } catch(e) {
+        wordType = 'err';
+      }
+
       
       // GET EXAMPLE
       try {
@@ -139,7 +144,7 @@ function togglePopover(element, callback) {
         content += '<a class="listen" style="background-image:url(&quot;' + chrome.extension.getURL("listen_icon.png") + '&quot;)" onclick="(new Audio(&quot;' + audioURL + '&quot;)).play()"></a>'; 
       }
       content += '<b>Translation:</b> ' + EWord;
-      content += '<br><b>Ex) </b>' + example;
+      content += '<br><b>Ex: </b>' + example;
       content += '<br><hr><p style="text-align:center; font-size:12px;">You have clicked this word ' + clicks + ' times.</p>';
       $(element).attr('data-content', content);
 
