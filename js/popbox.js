@@ -22,12 +22,12 @@ function addJ(className){
     }
 }
 
-function getClicks(EWord, cb) {
-  chrome.storage.sync.get(EWord, function(data) {
-          cb(data[EWord]);
-        });
+// function getClicks(EWord, cb) {
+//   chrome.storage.sync.get(EWord, function(data) {
+//           cb(data[EWord]);
+//         });
 
-}
+// }
 
 function rightClick(EWord) {
   chrome.storage.local.get(EWord, function(data) {

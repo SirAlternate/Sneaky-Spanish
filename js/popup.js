@@ -10,7 +10,14 @@ function onLoad() {
   // Fetch button from html, update its state, and create event listener
   button = document.getElementById("stateButton");
   button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
-  button.addEventListener("click", toggleState, false)
+  button.addEventListener("click", toggleState, false);
+
+  chrome.storage.local.get(null,function(data) {
+        $('#graph').html(data[0]);
+        console.log(data);
+      });
+
+
 }
 
 // Function for toggling between statuses

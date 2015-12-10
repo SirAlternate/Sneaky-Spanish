@@ -9,7 +9,6 @@ function getDictionary(cb) {
       dataType: "json",
       success: function(responseData, status){
         console.log("got the dictionary!");
-
         cb(responseData);
       },
       error: function(msg) {
