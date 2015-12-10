@@ -22,9 +22,13 @@ function toggleState() {
   button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
 
   if(localStorage.status == 1){
-    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SSicon.png" });
+    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SSicon2.png" });
   } else {
-    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "icon.png" });
+    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SSicon.png" });
   }
 
+}
+
+function outputUpdate(level) {
+  document.querySelector('#level').value = level;
 }
