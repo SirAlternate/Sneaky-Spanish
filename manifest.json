@@ -6,10 +6,10 @@
 	"version": "1.0",
 
 	"browser_action": {
-		"default_icon": "SSicon.png",
+		"default_icon": "SS16.png",
 		"default_popup": "popup.html"
 	},
-  "icons" : {"16" : "SSicon.png"},
+  "icons" : {"16" : "SS16.png", "48" : "SS48.png", "128" : "SS128.png"},
 	"permissions": [
     "tabs", 
     "<all_urls>", 

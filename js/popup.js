@@ -23,9 +23,9 @@ function toggleState() {
   button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
 
   if(localStorage.status == 1){
-    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16D.png" });
-  } else {
     chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16.png" });
+  } else {
+    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16D.png" });
   }
 
 }
