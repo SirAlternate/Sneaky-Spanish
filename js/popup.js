@@ -12,12 +12,6 @@ function onLoad() {
   button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
   button.addEventListener("click", toggleState, false);
 
-  chrome.storage.local.get(null,function(data) {
-        $('#graph').html(data[0]);
-        console.log(data);
-      });
-
-
 }
 
 // Function for toggling between statuses
