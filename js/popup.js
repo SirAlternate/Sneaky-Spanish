@@ -2,32 +2,51 @@
 document.addEventListener("DOMContentLoaded", onLoad);
 
 function onLoad() {
-  // If status field does not exist locally then create it
+  // STATUS
   if (!localStorage.status) {
     localStorage['status'] = 1; // Default value is 1 (enabled)
   }
-
-  // Fetch button from html, update its state, and create event listener
-  button = document.getElementById("stateButton");
-  button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
-  button.addEventListener("click", toggleState, false);
-
-}
-
-// Function for toggling between statuses
-function toggleState() {
-  // Switches between 0 and 1
-  localStorage.status = 1 - localStorage.status;
   
-  // If status is 0 then text is "Disable", if 1 then text is "Enable"
-  button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
+  button = document.getElementById("stateButton");
+  if (button != null) {
+    button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
+    button.addEventListener("click", function() {
+      // Switches between 0 and 1
+      localStorage.status = 1 - localStorage.status;
 
-  if(localStorage.status == 1){
-    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16.png" });
-  } else {
-    chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16D.png" });
+      // If status is 0 then text is "Disable", if 1 then text is "Enable"
+      button.innerHTML = ( localStorage.status == 1 )? "Disable" : "Enable";
+
+      if(localStorage.status == 1){
+        chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16.png" });
+      } else {
+        chrome.runtime.sendMessage({ "method" : "changeIcon", "path" : "SS16D.png" });
+      }
+    }, false);
   }
+  // OPTIONS - HIGHLIGHTING
+  if (!localStorage.o_highlight) {
+    localStorage['o_highlight'] = false; // Default value is 1 (enabled)
+  }
+  
+  o_highlight = document.getElementById("highlight");
+  if (o_highlight != null) {
+    o_highlight.checked = localStorage.o_highlight;
+    o_highlight.addEventListener("click", function() {
+      // switches between true and false
+      if(localStorage.o_highlight) {
+        localStorage.o_highlight = false;
+      } else {
+        localStorage.o_highlight = true;
+      }
 
+      // refresh tabs
+      chrome.tabs.getSelected(null, function(tab) {
+        var code = 'window.location.reload();';
+        chrome.tabs.executeScript(tab.id, {code: code});
+      });
+    }, false);
+  }
 }
 
 function outputUpdate(level) {

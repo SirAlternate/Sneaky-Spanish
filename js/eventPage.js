@@ -6,6 +6,10 @@ chrome.runtime.onMessage.addListener(
       console.log(localStorage['status']);
       sendResponse({status: localStorage['status']});
     }
+    if(request.method == "getO_highlight") {
+      console.log(localStorage['o_highlight']);
+      sendResponse({status: localStorage['o_highlight']});
+    }
     if(request.method == "changeIcon") {
       chrome.tabs.getSelected(null, function(tab) {
         var code = 'window.location.reload();';

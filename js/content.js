@@ -9,6 +9,12 @@ function getStatus(callback) {
   }, function(response) {
     callback(response.status);
   });
+  
+  chrome.runtime.sendMessage({
+    method: "getO_highlight"
+  }, function(response) {
+    highlight = response.status;
+  });
 }
 
 function onLoad(localStatus) {
@@ -69,6 +75,12 @@ function replaceWord(word1, word2, cb) {
   $(element).attr('data-html', 'true');
   $(element).attr('EWord', word1);
   $(element).attr('SWord', word2);
+  
+  if(highlight == true) {
+    $(element).attr('style', 'color: black; background-color: yellow');
+  } else {
+    $(element).removeAttr('style');
+  }
 
   var qString = "\\b" + word1 + "\\b"; //'//b' is to omit embedded words (like rather and other for the)
   var findMe = new RegExp(qString, "g"); //make regex
