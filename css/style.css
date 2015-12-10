@@ -33,11 +33,7 @@ button {
 .bButtons{
   float: left;
   width: 33%;
-}
-.bButtons:hover{
-  background-color: #383838;
-  float: left;
-  width: 33%;
+  background-color: #03a303;
 }
 #stateButton{
   border-radius: 2px;
@@ -45,6 +41,9 @@ button {
 hr{
   clear: both;
   border-top: 1px solid;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
 }
 form{
 	text-align: left;
