@@ -25,9 +25,7 @@ function onLoad() {
     }, false);
   }
   //DIFICULTY
-  $("#slider").mousemove( function(e){
-    outputUpdate($(this).val());
-  });
+  setSlider();
 
 
   // OPTIONS - HIGHLIGHTING
@@ -57,13 +55,39 @@ function onLoad() {
 }
 
 function outputUpdate(level) {
-  if (level == 0){
-    document.querySelector('#level').value = "Giraffe";
-  }
-  else if (level == 1){
-    document.querySelector('#level').value = "Medium";
-  }
-  else if (level == 2){
-    document.querySelector('#level').value = "Hard";
-  }
+  chrome.storage.local.set({"SSlevel" : Number(level)}, function() {
+    if (level == 0){
+      document.querySelector('#level').value = "Giraffe";
+    }
+    else if (level == 1){
+      document.querySelector('#level').value = "Medium";
+    }
+    else if (level == 2){
+      document.querySelector('#level').value = "Hard";
+    }
+
+    // chrome.runtime.sendMessage({ "method" : "refresh"});
+  });
+}
+
+function setSlider() {
+  chrome.storage.local.get("SSlevel",function(data){
+    console.log(data);
+    var level = data.SSlevel;
+    if (level == 0){
+      document.querySelector('#level').value = "Giraffe";
+      $('#sliderBox').html('<input type="range" min="0" max="2" value="0" id="slider" step="1">')
+    }
+    else if (level == 1){
+      document.querySelector('#level').value = "Medium";
+      $('#sliderBox').html('<input type="range" min="0" max="2" value="1" id="slider" step="1">')
+    }
+    else if (level == 2){
+      document.querySelector('#level').value = "Hard";
+      $('#sliderBox').html('<input type="range" min="0" max="2" value="2" id="slider" step="1">')
+    }
+    $("#slider").mousemove( function(e){
+      outputUpdate($(this).val());
+    });
+  });
 }

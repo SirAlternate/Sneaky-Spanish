@@ -19,6 +19,12 @@ chrome.runtime.onMessage.addListener(
             // tabId: sender.tab.id
         });
     }
+    if(request.method == "refresh") {
+      chrome.tabs.getSelected(null, function(tab) {
+        var code = 'window.location.reload();';
+        chrome.tabs.executeScript(tab.id, {code: code});
+      });
+    }
   });
 
 

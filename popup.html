@@ -22,7 +22,9 @@
     <div id = "content">
       <label for="slider">Difficulty: </label>
       <output for="slider" id="level">Medium</output>
-      <input type="range" min="0" max="2" value="1" id="slider" step="1" onchange="outputUpdate(value)">
+      <div id="sliderBox">
+      	<input type="range" min="0" max="2" value="1" id="slider" step="1">
+      </div>
       <button type="button" id="stateButton" value="click"></button>
     </div>
   </div>

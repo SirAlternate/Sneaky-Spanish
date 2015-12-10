@@ -21,8 +21,10 @@ function onLoad(localStatus) {
   // only replace words if status is 1 (SS enabled)
   if (localStatus == 1) {
 
+    chrome.storage.local.get("SSlevel", function(levelData) {
+      console.log(levelData);  
     // FROM FILEUTIL.JS
-    getDictionary(function(responseData) {
+    getDictionary(levelData.SSlevel, function(responseData) {
 
       dic = Object.keys(responseData);
       var count = dic.length;
@@ -45,6 +47,7 @@ function onLoad(localStatus) {
           }
         }
       });
+    });
     });
   }
 }

@@ -21,6 +21,7 @@
     "persistent": false
   },
   "web_accessible_resources": [
+    "js/resources/easydictionary.json",
     "js/resources/dictionary.json",
     "js/resources/jquery-1.10.2.js",
     "js/popbox.js",
