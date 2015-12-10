@@ -3,7 +3,7 @@
 
 	"name": "Sneaky Spanish",
 	"description":"Designed for those wanting to learn Spanish but unable to invest the time required to do so.",
-	"version": "1.0",
+	"version": "1.0.1",
 
 	"browser_action": {
 		"default_icon": "SS16.png",
