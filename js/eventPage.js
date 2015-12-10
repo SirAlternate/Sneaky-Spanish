@@ -4,11 +4,10 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if(request.method == "getStatus") {
       console.log(localStorage['status']);
-      sendResponse({status: localStorage['status']});
+      sendResponse(localStorage['status']);
     }
     if(request.method == "getO_highlight") {
-      console.log(localStorage['o_highlight']);
-      sendResponse({status: localStorage['o_highlight']});
+      sendResponse(localStorage['o_highlight']);
     }
     if(request.method == "changeIcon") {
       chrome.tabs.getSelected(null, function(tab) {

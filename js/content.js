@@ -7,18 +7,17 @@ function getStatus(callback) {
   chrome.runtime.sendMessage({
     method: "getStatus"
   }, function(response) {
-    callback(response.status);
+    callback(response);
   });
   
   chrome.runtime.sendMessage({
     method: "getO_highlight"
   }, function(response) {
-    highlight = response.status;
+    highlight = response;
   });
 }
 
 function onLoad(localStatus) {
-
   // only replace words if status is 1 (SS enabled)
   if (localStatus == 1) {
 
@@ -76,10 +75,8 @@ function replaceWord(word1, word2, cb) {
   $(element).attr('EWord', word1);
   $(element).attr('SWord', word2);
   
-  if(highlight == true) {
+  if (highlight == 1) {
     $(element).attr('style', 'color: black; background-color: yellow');
-  } else {
-    $(element).removeAttr('style');
   }
 
   var qString = "\\b" + word1 + "\\b"; //'//b' is to omit embedded words (like rather and other for the)

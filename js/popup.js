@@ -26,18 +26,18 @@ function onLoad() {
   }
   // OPTIONS - HIGHLIGHTING
   if (!localStorage.o_highlight) {
-    localStorage['o_highlight'] = false; // Default value is 1 (enabled)
+    localStorage['o_highlight'] = 0; // Default value is 1 (enabled)
   }
   
   o_highlight = document.getElementById("highlight");
   if (o_highlight != null) {
-    o_highlight.checked = localStorage.o_highlight;
+    o_highlight.checked = localStorage['o_highlight'];
     o_highlight.addEventListener("click", function() {
       // switches between true and false
-      if(localStorage.o_highlight) {
-        localStorage.o_highlight = false;
+      if (o_highlight.checked) {
+        localStorage['o_highlight'] = 1;
       } else {
-        localStorage.o_highlight = true;
+        localStorage['o_highlight'] = 0;
       }
 
       // refresh tabs
