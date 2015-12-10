@@ -7,18 +7,20 @@
 <div id = "wrap">
   <div id="main_popup">
     <div id = "header">
-      <a href = "popup.html"><img src="SS16.png"></a>
-      <h2>Sneaky Spanish</h2>
+      <a href = "popup.html">
+        <img src="icons/SS16.png">
+        <h2>Sneaky Spanish</h2>
+      </a>
     </div>
     <hr/>
     <div id = "nav">
       <a href = "popup2.html"><button type="button" class="bButtons" value="click">Statistics</button></a>
       <a href = "js/resources/dictionary.json" target = "_blank"><button type="button" class="bButtons" value="click">Dictionary</button></a>
-      <a href = "popup3.html"><button type="button" class="bButtons" value="click">Settings</button></a>
+      <a href = "popup3.html"><button type="button" class="selected bButtons" value="click">Settings</button></a>
     </div>
     <div id = "content">
       <form action=""> <!-- insert action -->
-        <input type="checkbox" ="vehicle" value="highlight">Highlight Translated Words</input>
+        <input id="highlight" type="checkbox" ="vehicle" value="highlight">Highlight Translated Words</input>
         <br/>
         <input type="checkbox" ="vehicle" value="disable">Disable Pages Under This Domain</input>
         <br/>

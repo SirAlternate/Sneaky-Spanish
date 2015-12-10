@@ -6,10 +6,10 @@
 	"version": "1.0.1",
 
 	"browser_action": {
-		"default_icon": "SS16.png",
+		"default_icon": "icons/SS16.png",
 		"default_popup": "popup.html"
 	},
-  "icons" : {"16" : "SS16.png", "48" : "SS48.png", "128" : "SS128.png"},
+  "icons" : {"16" : "icons/SS16.png", "48" : "icons/SS48.png", "128" : "icons/SS128.png"},
 	"permissions": [
     "tabs", 
     "<all_urls>", 
@@ -24,7 +24,7 @@
     "js/resources/dictionary.json",
     "js/resources/jquery-1.10.2.js",
     "js/popbox.js",
-    "listen_icon.png"
+    "icons/listen.png"
   ],
   "content_scripts": [
     {
